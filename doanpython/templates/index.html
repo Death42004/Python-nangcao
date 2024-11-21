@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Người Dùng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff; /* Màu nền trắng */
+            color: #212529; /* Màu chữ đen */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #212529; /* Tiêu đề màu đen */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 2px solid #212529; /* Đường kẻ đậm màu đen */
+        }
+
+        th {
+            background-color: #000000; /* Màu nền tiêu đề bảng */
+            color: #fff; /* Màu chữ tiêu đề bảng */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa; /* Màu nền hàng chẵn */
+        }
+
+        tr:hover {
+            background-color: #e9ecef; /* Màu nền khi hover */
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff; /* Màu chữ của liên kết */
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        a:hover {
+            text-decoration: underline; /* Hiệu ứng khi hover */
+        }
+    </style>
+</head>
+<body>
+    <h2>Danh Sách Người Dùng</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Họ và tên</th>
+                <th>MSSV</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.mssv }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ url_for('logout') }}">Đăng Xuất</a>
+</body>
+</html>

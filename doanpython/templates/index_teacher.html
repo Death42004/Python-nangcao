@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Sinh Viên </title>
+    <style>
+        /* Thiết kế chung cho body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Tiêu đề */
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        /* Thiết kế bảng */
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+            transition: background-color 0.2s;
+        }
+
+        /* Thiết kế chung cho các nút */
+        table a {
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Nút sửa */
+        .btn-edit {
+            color: #2196F3;
+            background-color: #e3f2fd;
+        }
+
+        .btn-edit:hover {
+            color: white;
+            background-color: #1769aa;
+        }
+
+        /* Nút xóa */
+        .btn-delete {
+            color: white;
+            background-color: #f44336;
+        }
+
+        .btn-delete:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Khu vực nút thao tác */
+        .actions {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .actions a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .actions a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>Danh Sách Sinh Viên</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Họ và tên</th>
+                <th>MSSV</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.mssv }}</td>
+                <td>
+                    <a href="{{ url_for('edit_user', id=user.id) }}" class="btn-edit">Sửa</a> | 
+                    <a href="{{ url_for('delete_user', id=user.id) }}" class="btn-delete">Xóa</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="actions">
+        <a href="{{ url_for('add_user') }}">Thêm Sinh Viên </a>
+        <a href="{{ url_for('logout') }}">Đăng Xuất</a>
+    </div>
+</body>
+</html>
